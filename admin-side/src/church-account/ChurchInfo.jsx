@@ -1,112 +1,158 @@
-import React from 'react';
-import { Pie } from 'react-chartjs-2';
-import { Chart as ChartJS } from 'chart.js/auto';
-import { getPendingCount, getCurrentCount } from "../church-account/ChurchMembers";
-import { getMemberAccPendingCount, getMemberAccCurrentCount } from '../member-account/MemberAcc'; // Adjust the path as necessary
+import React, { useState } from 'react';
+import LogoPlaceHolder from '../assets/logo_placeholder.png';
+import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti';
+import { MdOutlineBook } from 'react-icons/md';
+import { GrDocumentNotes } from 'react-icons/gr';
+import { MdOutlineVideoCameraBack } from "react-icons/md";
 
-const ProgressBar = ({ label, value, color }) => {
+const ChurchInfo = () => {
+    const [isExpanded1, setIsExpanded1] = useState(false);
+    const [isExpanded2, setIsExpanded2] = useState(false);
+    const [isExpanded3, setIsExpanded3] = useState(false); // State for Section 3
+    const [isExpanded4, setIsExpanded4] = useState(false);
+    const [isIconClicked, setIsIconClicked] = useState(false);
+    const toggleExpansion1 = () => {
+        setIsExpanded1(!isExpanded1);
+    };
+
+    const toggleExpansion2 = () => {
+        setIsExpanded2(!isExpanded2);
+    };
+
+    const toggleExpansion3 = () => {
+        setIsExpanded3(!isExpanded3); // Toggle function for Section 3
+    };
+
+    const toggleExpansion4 = () => {
+        setIsExpanded4(!isExpanded4); // Toggle function for Section 3
+    };
+    const toggleIcon = () => {
+        setIsIconClicked(!isIconClicked);
+    };
+
     return (
-        <div style={{ margin: '10px 0' }}>
-            <div style={{ fontSize: '14px', marginBottom: '4px' }}>{label}</div>
-            <div style={{
-                height: '15px',
-                width: '100%',
-                backgroundColor: '#e0e0de',
-                borderRadius: '25px',
-            }}>
-                <div style={{
-                    height: '100%',
-                    width: `${value}%`,
-                    backgroundColor: color,
-                    borderRadius: '25px',
-                    textAlign: 'right',
-                    paddingRight: '5px',
-                    lineHeight: '15px',
-                    color: 'white',
-                    fontWeight: 'bold',
-                    fontSize: '12px'
-                }}>
-                    {value}%
-                </div>
+        <div className="flex flex-col mt-20 font-poppins ml-5">
+            <div className="flex items-center">
+                <img src={LogoPlaceHolder} alt="Logo" className="w-18 h-14" />
+                <p className="ml-1 font-semibold">Church Name</p>
             </div>
+            
+            <div className="flex flex-col items-start mt-12 relative">
+                <div className="flex items-center justify-between w-full">
+                    <div className="flex items-center">
+                        <p className="text-[0.70rem] font-bold ml-6">Section 1</p>
+                        <button onClick={toggleExpansion1} className="focus:outline-none ml-[13rem]">
+                            {isExpanded1 ? <TiArrowSortedUp className="text-md" /> : <TiArrowSortedDown className="text-md" />}
+                        </button>
+                    </div>
+                </div>
+                <hr className="border-t my-2 w-full" style={{ maxWidth: 'calc(100% - 3rem)' }} />
+                {isExpanded1 && (
+                    <div className="flex justify-between items-center w-full ">
+                        <div className="flex items-center ml-6">
+                            <MdOutlineBook className="text-[0.60rem] mr-1" />
+                            <p className="text-[0.60rem]">Loren Ipsum</p>
+                        </div>
+                        <div className="flex items-center mr-[3.5rem]">
+                            <p className="text-[0.60rem]">View Notes</p>
+                            <GrDocumentNotes className="text-[0.60rem]  ml-1" />
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* Section 2 */}
+            <div className="flex flex-col items-start mt-5 relative">
+                <div className="flex items-center justify-between w-full">
+                    <div className="flex items-center">
+                        <p className="text-[0.70rem] font-bold ml-6">Section 2</p>
+                        <button onClick={toggleExpansion2} className="focus:outline-none ml-[13rem]">
+                            {isExpanded2 ? <TiArrowSortedUp className="text-md" /> : <TiArrowSortedDown className="text-md" />}
+                        </button>
+                    </div>
+                </div>
+                <hr className="border-t my-2 w-full" style={{ maxWidth: 'calc(100% - 3rem)' }} />
+                {isExpanded2 && (
+                    <div className="flex justify-between items-center w-full ">
+                        <div className="flex items-center ml-6">
+                            <MdOutlineBook className="text-[0.60rem] mr-1" />
+                            <p className="text-[0.60rem]">Loren Ipsum</p>
+                        </div>
+                        <div className="flex items-center mr-[3.5rem]">
+                            <p className="text-[0.60rem]">View Notes</p>
+                            <GrDocumentNotes className="text-[0.60rem]  ml-1" />
+                        </div>
+                    </div>
+                )}
+            </div>
+
+            {/* Section 3 */}
+            <div className="flex flex-col items-start mt-5 relative">
+                <div className="flex items-center justify-between w-full">
+                    <div className="flex items-center">
+                        <p className="text-[0.70rem] font-bold ml-6">Section 3</p>
+                        <button onClick={toggleExpansion3} className="focus:outline-none ml-[13rem]">
+                            {isExpanded3 ? <TiArrowSortedUp className="text-md" /> : <TiArrowSortedDown className="text-md" />}
+                        </button>
+                    </div>
+                </div>
+                <hr className="border-t my-2 w-full" style={{ maxWidth: 'calc(100% - 3rem)' }} />
+                {isExpanded3 && (
+                    <div className="flex justify-between items-center w-full ">
+                        <div className="flex items-center ml-6">
+                            <MdOutlineBook className="text-[0.60rem] mr-1" />
+                            <p className="text-[0.60rem]">Loren Ipsum</p>
+                        </div>
+                        <div className="flex items-center mr-[3.5rem]">
+                            <p className="text-[0.60rem]">View Notes</p>
+                            <GrDocumentNotes className="text-[0.60rem] ml-1" />
+                        </div>
+                    </div>
+                )}
+            </div>
+            
+  
+<div className="flex flex-col items-start mt-5 relative">
+    <div className="flex items-center justify-between w-full">
+        <div className="flex items-center">
+            <p className="text-[0.70rem] font-bold ml-6">Section 4</p>
+            <button onClick={toggleExpansion4} className="focus:outline-none ml-[13rem]">
+                {isExpanded4 ? <TiArrowSortedUp className="text-md" /> : <TiArrowSortedDown className="text-md" />}
+            </button>
+        </div>
+    </div>
+    <hr className="border-t my-2 w-full" style={{ maxWidth: 'calc(100% - 3rem)' }} />
+    {isExpanded4 && (
+        <div className="flex justify-between items-center w-full ">
+            <div className="flex items-center ml-6">
+                <MdOutlineBook className="text-[0.60rem] mr-1" />
+                <p className="text-[0.60rem]">Loren Ipsum</p>
+            </div>
+            <div className="flex items-center mr-[3.5rem]">
+                <button onClick={toggleIcon} className="focus:outline-none">
+                    {isIconClicked ? <TiArrowSortedUp className="text-xs ml-1" /> : <TiArrowSortedDown className="text-xs ml-1" />}
+                </button>
+            </div>
+        </div>
+    )}
+    {isIconClicked && (
+        <div className="flex justify-between items-center w-full mt-2 ">
+            <div className="flex items-center ml-10">
+                <MdOutlineVideoCameraBack className="text-[0.60rem] mr-1" />
+                <p className="text-[0.60rem]">Loren Ipsum</p>
+            </div>
+            <div className="flex items-center mr-[3.5rem]">
+                <p className="text-[0.60rem]">View Notes</p>
+                <GrDocumentNotes className="text-[0.60rem] ml-1" />
+            </div>
+            
+        </div>
+        
+    )}
+</div>
+
         </div>
     );
 };
 
-const DashC = () => {
-    const pendingCount = getPendingCount();
-    const currentCount = getCurrentCount();
-    const totalChurchMembers = pendingCount + currentCount;
-    const pendingPercentage = Math.round((pendingCount / totalChurchMembers) * 100);
-    const currentPercentage = Math.round((currentCount / totalChurchMembers) * 100);
-
-    const memberAccPendingCount = getMemberAccPendingCount();
-    const memberAccCurrentCount = getMemberAccCurrentCount();
-    const totalMemberAcc = memberAccPendingCount + memberAccCurrentCount;
-    const memberAccPendingPercentage = Math.round((memberAccPendingCount / totalMemberAcc) * 100);
-    const memberAccCurrentPercentage = Math.round((memberAccCurrentCount / totalMemberAcc) * 100);
-
-    const churchData = {
-        labels: ['Current Church Members', 'Pending Church Members'],
-        datasets: [{
-            data: [currentCount, pendingCount],
-            backgroundColor: ['rgb(235,227,211)', '#26577c'],
-            hoverOffset: 4
-        }]
-    };
-
-    const memberAccData = {
-        labels: ['Current Members', 'Pending Applications'],
-        datasets: [{
-            data: [memberAccCurrentCount, memberAccPendingCount],
-            backgroundColor: ['#952323', 'rgb(228,168,124)'],
-            hoverOffset: 4
-        }]
-    };
-
-    const options = {
-        plugins: {
-            tooltip: {
-                callbacks: {
-                    label: function(tooltipItem) {
-                        return `${tooltipItem.label}: ${tooltipItem.raw}`;
-                    }
-                }
-            },
-            legend: {
-                position: 'top'
-            }
-        },
-        responsive: true,
-        maintainAspectRatio: false
-    };
-
-    return (
-        <div style={{
-            maxWidth: '375px',
-            margin: '20px auto',
-            backgroundColor: 'white',
-            padding: '20px'
-        }}>
-            <div style={{ marginBottom: '30px', padding: '20px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)', borderRadius: '10px' }}>
-                <h2 style={{ textAlign: 'center', color: '#555' }}>CHURCH</h2>
-                <div style={{ height: '250px' }}>
-                    <Pie data={churchData} options={options} />
-                </div>
-                <ProgressBar label="Pending Church Applications" value={pendingPercentage} color="#26577c" />
-                <ProgressBar label="Current Church Members" value={currentPercentage} color="rgb(235,227,211)" />
-            </div>
-            <div style={{ padding: '20px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)', borderRadius: '10px' }}>
-                <h2 style={{ textAlign: 'center', color: '#555' }}>MEMBER</h2>
-                <div style={{ height: '250px' }}>
-                    <Pie data={memberAccData} options={options} />
-                </div>
-                <ProgressBar label="Pending Member Applications" value={memberAccPendingPercentage} color="rgb(228,168,124)" />
-                <ProgressBar label="Current Members" value={memberAccCurrentPercentage} color="#952323" />
-            </div>
-        </div>
-    
-    );
-}
-
-export default DashC;
+export default ChurchInfo;

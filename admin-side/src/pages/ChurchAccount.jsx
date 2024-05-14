@@ -1,15 +1,14 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import ChurchMembers from '../church-account/ChurchMembers';
-import ChurchInfo from '../church-account/ChurchInfo';
+import ChurchInfo from '../church-account/ChurchInfo'; 
+import ChurchMembers from '../church-account/ChurchMembers'; 
+import Modal from '../church-account/Modal';
 
-const ChurchAccount = () => {
+export default function ChurchAccount() {
     return (
         <Routes>
             <Route path="/" element={<ChurchMembers />} />
-            <Route path="/church-info" element={<ChurchInfo />} />
+            <Route path="ChurchInfo" element={<ChurchInfo />} /> {/* Corrected path */}
         </Routes>
     );
-};
-
-export default ChurchAccount;
+}

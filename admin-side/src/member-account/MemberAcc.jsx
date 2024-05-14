@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import MemberModal from './MemberModal';
+import Modal from '../church-account/Modal';
 import logoImage from '../assets/logo_placeholder.png';
 
-const members = ["Member 1", "Member 2", "Member 3"];
+const members = ["Member 1", "Member 2", "Member 3", "Member 4", "Member 5"];
 const churchMembers = ["Chenelyn Hernandez", "Kyla Shingaling", "Wreckit Ralph", "America Joy"];
 
 // Export these utility functions
 export const getMemberAccPendingCount = () => members.length;
 export const getMemberAccCurrentCount = () => churchMembers.length;
 
-export default function MemberAcc() {
+const MemberAcc = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedMember, setSelectedMember] = useState(null);
     const [membersState, setMembers] = useState(members);
@@ -18,7 +18,7 @@ export default function MemberAcc() {
     const navigate = useNavigate();
 
     const handleViewClick = (member) => {
-        navigate('/MemberInfo', { state: { member } });
+        navigate('/member-account/member-info', { state: { member } });
     };
 
     const openModal = (member) => {
@@ -37,9 +37,9 @@ export default function MemberAcc() {
     const handleDecline = (member) => {
         setMembers(currentMembers => currentMembers.filter(m => m !== member));
     };
+
     return (
         <div className="p-6 max-w-[375px] font-poppins mx-auto">
-             {/* Place DashChurch at the desired position */}
             <h1 className="text-[28px] font-extrabold text-center mt-8 mb-6">MEMBER ACCOUNT</h1>
             <div className="flex items-center mb-4">
                 <span className="font-semibold text-[0.75rem]">Pending Applications</span>
@@ -76,8 +76,8 @@ export default function MemberAcc() {
                 ))}
             </div>
             {isModalOpen && <Modal member={selectedMember} closeModal={closeModal} acceptHandler={handleAccept} />}
-            
         </div>
-        
     );
 }
+
+export default MemberAcc;
