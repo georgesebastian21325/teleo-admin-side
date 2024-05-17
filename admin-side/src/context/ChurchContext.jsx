@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Church1Event from '../assets/Church1_Event.jpeg';
 
 const applicants = [
     {
@@ -125,12 +126,14 @@ const members = [
             {
                 title: "Annual Charity Gala",
                 description: "Join us for our annual charity gala to support local families in need.",
-                date: "September 5, 2023"
+                date: "September 5, 2023",
+                image: Church1Event
             },
             {
                 title: "Summer Picnic",
                 description: "Enjoy a fun-filled day with family and friends at our annual summer picnic.",
-                date: "July 20, 2023"
+                date: "July 20, 2023",
+                image: Church1Event
             }
         ]
     },
@@ -150,7 +153,8 @@ const members = [
             {
                 title: "Christmas Celebration",
                 description: "Join us for a magical Christmas celebration with carols, festive treats, and more.",
-                date: "December 10, 2023"
+                date: "December 10, 2023",
+                image: Church1Event
             }
         ]
     },
@@ -170,17 +174,20 @@ const members = [
             {
                 title: "Annual Charity Gala",
                 description: "Join us for our annual charity gala to support local families in need.",
-                date: "September 5, 2023"
+                date: "September 5, 2023",
+                image: Church1Event
             },
             {
                 title: "Summer Picnic",
                 description: "Enjoy a fun-filled day with family and friends at our annual summer picnic.",
-                date: "July 20, 2023"
+                date: "July 20, 2023",
+                image: Church1Event
             },
             {
                 title: "Christmas Celebration",
                 description: "Join us for a magical Christmas celebration with carols, festive treats, and more.",
-                date: "December 10, 2023"
+                date: "December 10, 2023",
+                image: Church1Event
             }
         ]
     }

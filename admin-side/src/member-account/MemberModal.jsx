@@ -5,7 +5,7 @@ export default function MemberModal({ closeModal, member, acceptHandler }) { // 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4">
             <div className="bg-white p-4 rounded-lg shadow" style={{ maxWidth: "90vw", margin: "0 auto" }}>
-                <h2 className="text-sm mb-2">You are about to accept an application</h2>
+                <h2 className="text-sm mb-2 text-center text-semibold">You are about to accept an application</h2>
                 <div className="flex items-center">
                     <img src={logoImage} alt="Logo" className="w-18 h-18 object-cover" />
                     <div className="ml-2">

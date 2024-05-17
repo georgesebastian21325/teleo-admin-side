@@ -5,12 +5,10 @@ import { FaCircleCheck } from "react-icons/fa6";
 
 const NewAdmin = () => {
   const [members, setMembers] = useState([
-    { name: 'Member 1', location: 'Location: New York, USA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.' },
-    { name: 'Member 2', location: 'Location: London, UK', description: 'Suspendisse lectus tortor, dignissim sit amet, adipiscing nec.' },
-    { name: 'Member 3', location: 'Location: Manila, Philippines', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.' },
-    { name: 'Member 4', location: 'Location: Sydney, Australia', description: 'Suspendisse lectus tortor, dignissim sit amet, adipiscing nec.' },
-    { name: 'Member 5', location: 'Location: Mumbai, India', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.' },
-    { name: 'Member 6', location: 'Location: Tokyo, Japan', description: 'Suspendisse lectus tortor, dignissim sit amet, adipiscing nec.' },
+    { name: 'John Doe', memberSince: '2018', location: 'Location: New York, USA', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.' },
+    { name: 'Jane Smith', memberSince: '2015', location: 'Location: London, UK', description: 'Suspendisse lectus tortor, dignissim sit amet, adipiscing nec.' },
+    { name: 'Michael Johnson', memberSince: '2020', location: 'Location: Manila, Philippines', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.' },
+    { name: 'Sarah Lee', memberSince: '2019', location: 'Location: Sydney, Australia', description: 'Suspendisse lectus tortor, dignissim sit amet, adipiscing nec.' }
   ]);
 
   const [isModalOpen, setModalOpen] = useState(false);
@@ -44,65 +42,71 @@ const NewAdmin = () => {
   };
 
   return (
-    <div className={`bg-white min-h-screen flex font-poppins flex-col items-center py-8 px-4 ${isModalOpen ? 'backdrop-blur-sm filter' : ''}`}>
-      <h1 className="text-3xl font-bold mb-8 mt-16">MANAGE ACCOUNT</h1>
-      <div className="w-full max-w-xs">
-        <div className="flex justify-between">
-        <h2 className="text-sm font-medium mb-5">
-          <Link to="/" className="text-black hover:underline focus:underline">
-            Profile Settings
-          </Link>
-        </h2>
-        </div>
-        <div className="flex justify-between mb-4">
-          <div className="text-md font-medium">Church Members</div>
-          <div className="bg-blue-800 text-white text-xs font-bold px-2 py-1 rounded-full">{members.length}</div>
-        </div>
+    <div className={`bg-white min-h-screen flex flex-col items-center py-8 px-4 ${isModalOpen ? 'backdrop-blur-sm filter' : ''}`}>
+      <h1 className="text-3xl font-bold mb-8 mt-16">Assign New Admin</h1>
+      <p className="text-gray-600 mb-8">Assign a new admin to manage the church's activities and members.</p>
 
+      <div className="w-full max-w-2xl">
         {members.map((member, index) => (
-          <div key={index} className="flex justify-between items-center py-3 border-b border-gray-300">
+          <div key={index} className="flex justify-between items-center py-4 border-b border-gray-300">
             <div className="flex items-center">
               <span className="w-10 h-10 flex justify-center items-center bg-gray-200 text-gray-700 text-lg font-medium rounded-full">
-                {member.name[0]}
+                {member.name.split(' ').map((n) => n[0]).join('')}
               </span>
-              <span className="ml-4 text-sm font-medium">{member.name}</span>
+              <div className="ml-4">
+                <h3 className="text-sm font-medium">{member.name}</h3>
+                <p className="text-xs text-gray-500">Member since {member.memberSince}</p>
+              </div>
             </div>
-            <button onClick={() => handleOpenModal(member)} className="bg-black hover:bg-blue-600 h-8 text-white font-bold py-2 px-4 rounded-md text-xs">
-              Assign
+            <button
+              onClick={() => handleOpenModal(member)}
+              className="text-xs text-blue-600 hover:text-blue-800 focus:text-blue-800"
+            >
+              Assign as Admin
             </button>
           </div>
         ))}
+      </div>
 
-        {showAlert && (
-          <div className="fixed bottom-2 left-1/2 transform -translate-x-1/2 bg-green-900 text-white text-sm px-4 py-2 rounded whitespace-nowrap flex items-center justify-center">
-            <FaCircleCheck className="mr-2" /> Admin successfully assigned!
-          </div>
-        )}
+      <div className="flex justify-between w-full max-w-2xl mt-8 text-sm text-gray-500">
+        <div className="flex items-center">
+          <span className="mr-2"></span>
+          <span>Total Members: {members.length}</span>
+        </div>
+        <div className="flex items-center">
+          <span className="mr-2"></span>
+          <span>Admins: 3</span>
+        </div>
+      </div>
+      {showAlert && (
+        <div className="fixed bottom-2 left-1/2 transform -translate-x-1/2 bg-green-500 text-white text-sm px-6 py-3 rounded-full shadow-lg flex items-center justify-center">
+          <FaCircleCheck className="mr-2" /> Admin successfully assigned!
+        </div>
+      )}
 
-        {isModalOpen && (
-          <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
-            <div className="bg-white p-4 rounded-lg flex flex-col items-center text-center" style={modalContainerStyles}>
-              <h2 className="text-md font-semibold mb-2">You are about to make this member an admin</h2>
-              <div className="flex items-center space-x-4">
-                <img src={LogoPlaceHolder} className="w-20 h-20 object-cover rounded-full" alt="Logo" />
-                <div className="text-left">
-                  <h3 className="text-md font-bold mt-2">{selectedMember.name}</h3>
-                  <p className="text-xs">{selectedMember.location}</p>
-                  <p className="text-xs">{selectedMember.description}</p>
-                </div>
-              </div>
-              <div className="flex mt-4">
-                <button onClick={handleCloseModal} className="bg-black hover:bg-gray-400 text-white font-bold py-2 px-4 rounded text-xs mr-2">
-                  Go Back
-                </button>
-                <button onClick={handleAccept} className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded text-xs ml-2">
-                  Accept
-                </button>
+      {isModalOpen && (
+        <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-4 rounded-lg flex flex-col items-center text-center" style={modalContainerStyles}>
+            <h2 className="text-md font-semibold mb-2">You are about to make this member an admin</h2>
+            <div className="flex items-center space-x-4">
+              <img src={LogoPlaceHolder} className="w-20 h-20 object-cover rounded-full" alt="Logo" />
+              <div className="text-left">
+                <h3 className="text-md font-bold mt-2">{selectedMember.name}</h3>
+                <p className="text-xs">{selectedMember.location}</p>
+                <p className="text-xs">{selectedMember.description}</p>
               </div>
             </div>
+            <div className="flex mt-4">
+              <button onClick={handleCloseModal} className="bg-black hover:bg-gray-400 text-white font-bold py-2 px-4 rounded text-xs mr-2">
+                Go Back
+              </button>
+              <button onClick={handleAccept} className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded text-xs ml-2">
+                Accept
+              </button>
+            </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

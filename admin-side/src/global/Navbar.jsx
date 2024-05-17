@@ -80,7 +80,7 @@ const Navbar = () => {
       </div>
 
       {/* Desktop Sidebar */}
-      <div className="bg-gradient-to-t from-red-900 via-slate-900 to-sky-900 h-screen w-60 p-3 flex-col hidden lg:block">
+      <div className="bg-gradient-to-t from-red-900 via-slate-900 to-sky-900 h-full w-60 p-3 flex-col hidden lg:block">
         <div className="flex flex-col items-center py-3">
           <div className="flex flex-col mr-2 items-center mt-10">
             <img src={ImgPlaceholder} alt="Logo" />
