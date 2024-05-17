@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
 import { MdOutlineEmail, MdLockOutline, MdVisibility, MdVisibilityOff } from 'react-icons/md';
 import LogoPlaceHolder from '../assets/logo_placeholder.png';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
-export default function UpperSection() {
+export default function LoginSection() {
     const [passwordShown, setPasswordShown] = useState(false);
-    
+    const navigate = useNavigate(); // Create navigate function
+
     const togglePasswordVisibility = () => {
         setPasswordShown(!passwordShown);
+    };
+
+    const handleLogin = () => {
+        // Here you would typically handle authentication
+        // For now, we'll assume the login is successful and redirect
+        navigate('/dashboard'); // Redirect to the dashboard
     };
 
     return (
@@ -47,7 +55,7 @@ export default function UpperSection() {
             </div>
 
             <p className="font-normal text-[10px] ml-[9rem] cursor-pointer">Forgot Password?</p>
-            <button className="bg-gradient-to-r from-[#073150] via-[#093D64] to-[#5F1313] hover:from-[#093D64] hover:via-[#5F1313] hover:to-[#000000] text-white font-bold py-1 px-9 rounded mt-8">
+            <button onClick={handleLogin} className="bg-gradient-to-r from-[#073150] via-[#093D64] to-[#5F1313] hover:from-[#093D64] hover:via-[#5F1313] hover:to-[#000000] text-white font-bold py-1 px-9 rounded mt-8">
                 LOGIN
             </button>
         </div>

@@ -49,15 +49,11 @@ const ChangePassword = () => {
 
   return (
     <div className="bg-white min-h-screen flex font-poppins flex-col items-center py-8 px-4">
-      <h1 className="text-3xl font-bold mb-8 mt-16">MANAGE ACCOUNT</h1>
-      <div className="w-full max-w-xs space-y-4">
-        <h2 className="text-sm font-medium mb-5">
-          <Link to="/" className="text-black hover:underline focus:underline">
-            Profile Settings
-          </Link>
-        </h2>
-        <div className="flex items-center">
-          <img src={LogoPlaceHolder} className="w-16 h-16 object-cover" alt="Logo" />
+      <h1 className="text-3xl font-bold mb-8 mt-16">CHANGE PASSWORD</h1>
+      
+      <div className="w-full max-w-md bg-gray-50 p-8 rounded-lg shadow-lg space-y-4">
+        <div className="flex items-center mb-6">
+          <img src={LogoPlaceHolder} className="w-16 h-16 object-cover rounded-full" alt="Logo" />
           <span className="ml-3 text-sm">Victory</span>
         </div>
 
@@ -71,7 +67,7 @@ const ChangePassword = () => {
               name="currentPassword"
               value={formData.currentPassword}
               onChange={handleInputChange}
-              className="appearance-none block w-full bg-white text-gray-700 border-b-2 border-gray-200 py-2 px-1 leading-tight focus:outline-none"
+              className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
               type={showCurrentPassword ? 'text' : 'password'}
               placeholder="Current Password"
               style={{ fontSize: '12px', marginTop: '0.25rem' }}
@@ -81,7 +77,7 @@ const ChangePassword = () => {
               className="absolute inset-y-0 right-0 pr-3 flex items-center"
               onClick={handleToggleCurrentPassword}
             >
-              {showCurrentPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible/>}
+              {showCurrentPassword ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
             </button>
           </div>
         </div>
@@ -96,8 +92,8 @@ const ChangePassword = () => {
               name="newPassword"
               value={formData.newPassword}
               onChange={handleInputChange}
-              className="appearance-none block w-full bg-white text-gray-700 border-b-2 border-gray-200 py-2 px-1 leading-tight focus:outline-none"
-              type={showNewPassword ? 'password' : 'text'}
+              className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+              type={showNewPassword ? 'text' : 'password'}
               placeholder="New Password"
               style={{ fontSize: '12px', marginTop: '0.25rem' }}
             />
@@ -121,8 +117,8 @@ const ChangePassword = () => {
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleInputChange}
-              className="appearance-none block w-full bg-white text-gray-700 border-b-2 border-gray-200 py-2 px-1 leading-tight focus:outline-none"
-              type={showConfirmPassword ? 'password' : 'text'}
+              className="appearance-none block w-full bg-white text-gray-700 border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+              type={showConfirmPassword ? 'text' : 'password'}
               placeholder="Confirm Password"
               style={{ fontSize: '12px', marginTop: '0.25rem' }}
             />
@@ -145,10 +141,8 @@ const ChangePassword = () => {
             Cancel Changes
           </button>
         </div>
-
       </div>
     </div>
-
   );
 };
 

@@ -88,14 +88,6 @@ const DashC = () => {
             backgroundColor: 'white',
             padding: '20px'
         }}>
-            <div style={{ marginBottom: '30px', padding: '20px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)', borderRadius: '10px' }}>
-                <h2 style={{ textAlign: 'center', color: '#555' }}>CHURCH</h2>
-                <div style={{ height: '250px' }}>
-                    <Pie data={churchData} options={options} />
-                </div>
-                <ProgressBar label="Pending Church Applications" value={pendingPercentage} color="#26577c" />
-                <ProgressBar label="Current Church Members" value={currentPercentage} color="rgb(235,227,211)" />
-            </div>
             <div style={{ padding: '20px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)', borderRadius: '10px' }}>
                 <h2 style={{ textAlign: 'center', color: '#555' }}>MEMBER</h2>
                 <div style={{ height: '250px' }}>
@@ -103,6 +95,14 @@ const DashC = () => {
                 </div>
                 <ProgressBar label="Pending Member Applications" value={memberAccPendingPercentage} color="rgb(228,168,124)" />
                 <ProgressBar label="Current Members" value={memberAccCurrentPercentage} color="#952323" />
+            </div>
+            <div style={{ marginBottom: '30px', padding: '20px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)', borderRadius: '10px' }}>
+                <h2 style={{ textAlign: 'center', color: '#555' }}>CHURCH</h2>
+                <div style={{ height: '250px' }}>
+                    <Pie data={churchData} options={options} />
+                </div>
+                <ProgressBar label="Pending Church Applications" value={pendingPercentage} color="#26577c" />
+                <ProgressBar label="Current Church Members" value={currentPercentage} color="rgb(235,227,211)" />
             </div>
         </div>
     

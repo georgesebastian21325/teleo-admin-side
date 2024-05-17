@@ -22,7 +22,7 @@ const Navbar = () => {
           <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
             <div className="relative flex items-center justify-between h-16">
               <div className="flex-shrink-0 flex items-center">
-                <Link to="/">
+                <Link to="/dashboard">
                   <span className="font-bold text-white ml-2">Teleo</span>
                 </Link>
               </div>
@@ -89,10 +89,10 @@ const Navbar = () => {
         </div>
         <div className="py-8 flex flex-1 flex-col gap-3 mt-12">
           <Link
-            to="/"
+            to="/dashboard"
             className={classNames(linkClass, {
-              "bg-neutral-700 text-white": pathname === "/",
-              "text-neutral-400": pathname !== "/",
+              "bg-neutral-700 text-white": pathname === "/dashboard",
+              "text-neutral-400": pathname !== "/dashboard",
             })}
           >
             <MdOutlineDashboard className="mr-3" /> Dashboard

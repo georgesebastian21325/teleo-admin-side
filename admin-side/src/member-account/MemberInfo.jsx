@@ -1,146 +1,97 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import LogoPlaceHolder from '../assets/logo_placeholder.png';
-import { TiArrowSortedDown, TiArrowSortedUp } from 'react-icons/ti';
-import { MdOutlineBook } from 'react-icons/md';
-import { GrDocumentNotes } from 'react-icons/gr';
-import { MdOutlineVideoCameraBack } from "react-icons/md";
 
 const MemberInfo = () => {
-    const location = useLocation();
-    const { member } = location.state || {};  // Make sure the state is defined
+  const location = useLocation();
+  const member = location.state?.member;
 
-    const [isExpanded1, setIsExpanded1] = useState(false);
-    const [isExpanded2, setIsExpanded2] = useState(false);
-    const [isExpanded3, setIsExpanded3] = useState(false); 
-    const [isExpanded4, setIsExpanded4] = useState(false);
-    const [isIconClicked, setIsIconClicked] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    mobileNumber: '',
+    birthday: '',
+    buildingNo: '',
+    streetName: '',
+    barangay: '',
+    city: '',
+    province: '',
+    postalCode: '',
+    country: ''
+  });
 
-    const toggleExpansion1 = () => setIsExpanded1(!isExpanded1);
-    const toggleExpansion2 = () => setIsExpanded2(!isExpanded2);
-    const toggleExpansion3 = () => setIsExpanded3(!isExpanded3); 
-    const toggleExpansion4 = () => setIsExpanded4(!isExpanded4); 
-    const toggleIcon = () => setIsIconClicked(!isIconClicked);
+  useEffect(() => {
+    if (member) {
+      setFormData({
+        name: member.name || '',
+        email: member.email || '',
+        mobileNumber: member.mobileNumber || '',
+        birthday: member.birthday || '',
+        buildingNo: member.buildingNo || '',
+        streetName: member.streetName || '',
+        barangay: member.barangay || '',
+        city: member.city || '',
+        province: member.province || '',
+        postalCode: member.postalCode || '',
+        country: member.country || ''
+      });
+    }
+  }, [member]);
 
-    return (
-        <div className="flex flex-col mt-20 font-poppins ml-5">
-            <div className="flex items-center">
-                <img src={LogoPlaceHolder} alt="Logo" className="w-18 h-14" />
-                <p className="ml-1 font-semibold">{member}</p>
-            </div>
-            
-            <div className="flex flex-col items-start mt-12 relative">
-                <div className="flex items-center justify-between w-full">
-                    <div className="flex items-center">
-                        <p className="text-[0.70rem] font-bold ml-6">Section 1</p>
-                        <button onClick={toggleExpansion1} className="focus:outline-none ml-[13rem]">
-                            {isExpanded1 ? <TiArrowSortedUp className="text-md" /> : <TiArrowSortedDown className="text-md" />}
-                        </button>
-                    </div>
-                </div>
-                <hr className="border-t my-2 w-full" style={{ maxWidth: 'calc(100% - 3rem)' }} />
-                {isExpanded1 && (
-                    <div className="flex justify-between items-center w-full ">
-                        <div className="flex items-center ml-6">
-                            <MdOutlineBook className="text-[0.60rem] mr-1" />
-                            <p className="text-[0.60rem]">Lorem Ipsum</p>
-                        </div>
-                        <div className="flex items-center mr-[3.5rem]">
-                            <p className="text-[0.60rem]">View Notes</p>
-                            <GrDocumentNotes className="text-[0.60rem]  ml-1" />
-                        </div>
-                    </div>
-                )}
-            </div>
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
 
-            {/* Section 2 */}
-            <div className="flex flex-col items-start mt-5 relative">
-                <div className="flex items-center justify-between w-full">
-                    <div className="flex items-center">
-                        <p className="text-[0.70rem] font-bold ml-6">Section 2</p>
-                        <button onClick={toggleExpansion2} className="focus:outline-none ml-[13rem]">
-                            {isExpanded2 ? <TiArrowSortedUp className="text-md" /> : <TiArrowSortedDown className="text-md" />}
-                        </button>
-                    </div>
-                </div>
-                <hr className="border-t my-2 w-full" style={{ maxWidth: 'calc(100% - 3rem)' }} />
-                {isExpanded2 && (
-                    <div className="flex justify-between items-center w-full ">
-                        <div className="flex items-center ml-6">
-                            <MdOutlineBook className="text-[0.60rem] mr-1" />
-                            <p className="text-[0.60rem]">Lorem Ipsum</p>
-                        </div>
-                        <div className="flex items-center mr-[3.5rem]">
-                            <p className="text-[0.60rem]">View Notes</p>
-                            <GrDocumentNotes className="text-[0.60rem]  ml-1" />
-                        </div>
-                    </div>
-                )}
-            </div>
-
-            {/* Section 3 */}
-            <div className="flex flex-col items-start mt-5 relative">
-                <div className="flex items-center justify-between w-full">
-                    <div className="flex items-center">
-                        <p className="text-[0.70rem] font-bold ml-6">Section 3</p>
-                        <button onClick={toggleExpansion3} className="focus:outline-none ml-[13rem]">
-                            {isExpanded3 ? <TiArrowSortedUp className="text-md" /> : <TiArrowSortedDown className="text-md" />}
-                        </button>
-                    </div>
-                </div>
-                <hr className="border-t my-2 w-full" style={{ maxWidth: 'calc(100% - 3rem)' }} />
-                {isExpanded3 && (
-                    <div className="flex justify-between items-center w-full ">
-                        <div className="flex items-center ml-6">
-                            <MdOutlineBook className="text-[0.60rem] mr-1" />
-                            <p className="text-[0.60rem]">Lorem Ipsum</p>
-                        </div>
-                        <div className="flex items-center mr-[3.5rem]">
-                            <p className="text-[0.60rem]">View Notes</p>
-                            <GrDocumentNotes className="text-[0.60rem] ml-1" />
-                        </div>
-                    </div>
-                )}
-            </div>
-            
-            <div className="flex flex-col items-start mt-5 relative">
-                <div className="flex items-center justify-between w-full">
-                    <div className="flex items-center">
-                        <p className="text-[0.70rem] font-bold ml-6">Section 4</p>
-                        <button onClick={toggleExpansion4} className="focus:outline-none ml-[13rem]">
-                            {isExpanded4 ? <TiArrowSortedUp className="text-md" /> : <TiArrowSortedDown className="text-md" />}
-                        </button>
-                    </div>
-                </div>
-                <hr className="border-t my-2 w-full" style={{ maxWidth: 'calc(100% - 3rem)' }} />
-                {isExpanded4 && (
-                    <div className="flex justify-between items-center w-full ">
-                        <div className="flex items-center ml-6">
-                            <MdOutlineBook className="text-[0.60rem] mr-1" />
-                            <p className="text-[0.60rem]">Lorem Ipsum</p>
-                        </div>
-                        <div className="flex items-center mr-[3.5rem]">
-                            <button onClick={toggleIcon} className="focus:outline-none">
-                                {isIconClicked ? <TiArrowSortedUp className="text-xs ml-1" /> : <TiArrowSortedDown className="text-xs ml-1" />}
-                            </button>
-                        </div>
-                    </div>
-                )}
-                {isIconClicked && (
-                    <div className="flex justify-between items-center w-full mt-2 ">
-                        <div className="flex items-center ml-10">
-                            <MdOutlineVideoCameraBack className="text-[0.60rem] mr-1" />
-                            <p className="text-[0.60rem]">Lorem Ipsum</p>
-                        </div>
-                        <div className="flex items-center mr-[3.5rem]">
-                            <p className="text-[0.60rem]">View Notes</p>
-                            <GrDocumentNotes className="text-[0.60rem] ml-1" />
-                        </div>
-                    </div>
-                )}
-            </div>
+  return (
+    <div className="bg-white min-h-screen flex font-poppins flex-col items-center py-8 px-4">
+      <div className="w-full max-w-4xl p-8 rounded-lg">
+        <div className="flex items-center mb-2">
+          <img src={LogoPlaceHolder} className="w-26 h-24 rounded-full" alt="User Profile" />
+          <div className="ml-4">
+            <h2 className="text-2xl font-bold">{formData.name}</h2>
+            <p className="text-gray-500">Member</p>
+          </div>
         </div>
-    );
+        
+        <h3 className="text-lg font-semibold mb-2">Personal Information</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <InputField label="Full Name" name="name" value={formData.name} onChange={handleInputChange} />
+          <InputField label="Email" name="email" value={formData.email} onChange={handleInputChange} type="email" />
+          <InputField label="Mobile Number" name="mobileNumber" value={formData.mobileNumber} onChange={handleInputChange} />
+          <InputField label="Birthday" name="birthday" value={formData.birthday} onChange={handleInputChange} placeholder="MM/DD/YYYY" />
+        </div>
+
+        <h3 className="text-lg font-semibold mb-4 mt-6">Address</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <InputField label="Building/House Number" name="buildingNo" value={formData.buildingNo} onChange={handleInputChange} />
+          <InputField label="Street Name" name="streetName" value={formData.streetName} onChange={handleInputChange} />
+          <InputField label="Barangay" name="barangay" value={formData.barangay} onChange={handleInputChange} />
+          <InputField label="City/Municipality" name="city" value={formData.city} onChange={handleInputChange} />
+          <InputField label="Province" name="province" value={formData.province} onChange={handleInputChange} />
+          <InputField label="ZIP/Postal Code" name="postalCode" value={formData.postalCode} onChange={handleInputChange} />
+          <InputField label="Country" name="country" value={formData.country} onChange={handleInputChange} />
+        </div>
+      </div>
+    </div>
+  );
 };
+
+const InputField = ({ label, type = 'text', name, value, onChange, placeholder }) => (
+  <div>
+    <label className="block text-gray-700 text-sm font-bold mb-2">{label}</label>
+    <input
+      type={type}
+      name={name}
+      value={value}
+      onChange={onChange}
+      className="shadow appearance-none border rounded w-full py-2 px-2 text-gray-700 leading-tight text-xs focus:outline-none focus:shadow-outline"
+      placeholder={placeholder || label}
+    />
+  </div>
+);
 
 export default MemberInfo;

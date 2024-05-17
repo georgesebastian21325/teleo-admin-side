@@ -9,8 +9,8 @@ export default function MemberModal({ closeModal, member, acceptHandler }) { // 
                 <div className="flex items-center">
                     <img src={logoImage} alt="Logo" className="w-18 h-18 object-cover" />
                     <div className="ml-2">
-                        <h3 className="text-base font-semibold">{member}</h3> {/* Display the member's name */}
-                        <p className="text-[0.75rem] text-gray-500">Location: Manila, Philippines</p>
+                        <h3 className="text-base font-semibold">{member.name}</h3> {/* Display the member's name */}
+                        <p className="text-[0.75rem] text-gray-500">Location:  {member.city},{member.country} </p>
                         <p className="text-[0.75rem] text-gray-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     </div>
                 </div>
