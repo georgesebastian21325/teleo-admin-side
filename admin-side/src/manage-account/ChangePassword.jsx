@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import LogoPlaceHolder from '../assets/logo_placeholder.png';
-import { Link } from 'react-router-dom';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { useNavigate } from 'react-router-dom';
 
 const ChangePassword = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     currentPassword: 'victory',
     newPassword: '',
@@ -142,6 +143,17 @@ const ChangePassword = () => {
           </button>
         </div>
       </div>
+
+      <div className="mt-6 w-full flex justify-center px-4">
+        <button
+          type="button"
+          onClick={() => navigate('/manage-account')}
+          className="px-6 py-2 bg-gray-300 text-xs text-gray-600 rounded hover:bg-gray-400"
+          style={{ marginRight: '360px' }}  // Moves the button 100 pixels to the right
+        >
+          Back
+        </button>
+  </div>
     </div>
   );
 };

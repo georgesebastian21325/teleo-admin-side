@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import LogoPlaceHolder from '../assets/logo_placeholder.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaCircleCheck } from "react-icons/fa6";
 
 const NewAdmin = () => {
@@ -10,6 +10,7 @@ const NewAdmin = () => {
     { name: 'Michael Johnson', memberSince: '2020', location: 'Location: Manila, Philippines', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.' },
     { name: 'Sarah Lee', memberSince: '2019', location: 'Location: Sydney, Australia', description: 'Suspendisse lectus tortor, dignissim sit amet, adipiscing nec.' }
   ]);
+  const [adminsCount, setAdminsCount] = useState(3); // Initialize admins count
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedMember, setSelectedMember] = useState(null);
@@ -31,6 +32,9 @@ const NewAdmin = () => {
       setSelectedMember(null);
       setShowAlert(true);
       setTimeout(() => setShowAlert(false), 3000);
+
+      // Increase admins count
+      setAdminsCount((prevCount) => prevCount + 1);
     }
     setModalOpen(false);
   };
@@ -40,6 +44,8 @@ const NewAdmin = () => {
     width: '80%',
     maxWidth: '400px',
   };
+
+  const navigate = useNavigate(); // Added the useNavigate hook here
 
   return (
     <div className={`bg-white min-h-screen flex flex-col items-center py-8 px-4 ${isModalOpen ? 'backdrop-blur-sm filter' : ''}`}>
@@ -75,7 +81,7 @@ const NewAdmin = () => {
         </div>
         <div className="flex items-center">
           <span className="mr-2"></span>
-          <span>Admins: 3</span>
+          <span>Admins: {adminsCount}</span> {/* Display admins count */}
         </div>
       </div>
       {showAlert && (
@@ -107,6 +113,18 @@ const NewAdmin = () => {
           </div>
         </div>
       )}
+
+      {/* Added div with button inside */}
+      <div className="mt-6 w-full flex justify-center px-4">
+        <button
+          type="button"
+          onClick={() => navigate('/manage-account')}
+          className="px-6 py-2 bg-gray-300 text-xs text-gray-600 rounded hover:bg-gray-400"
+          style={{ marginRight: '600px' }}  // Moves the button 100 pixels to the right
+        >
+          Back
+        </button>
+      </div>
     </div>
   );
 };

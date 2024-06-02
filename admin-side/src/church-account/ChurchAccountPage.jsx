@@ -71,7 +71,7 @@ const ChurchAccountPage = () => {
                     </div>
                 </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 gap-4">
                 {membersState.map((member, index) => (
                     <div key={index} className="bg-white p-4 rounded-lg shadow-lg flex flex-col justify-between text-[0.75rem]">
                         <div className="flex items-center">

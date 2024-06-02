@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import LogoPlaceHolder from '../assets/logo_placeholder.png';
 
@@ -54,6 +54,8 @@ const PrivacySettings = () => {
 
     console.log('Cancelled changes and reset toggles');
   };
+
+  const navigate = useNavigate(); // Added the useNavigate hook here
 
   return (
     <div className="bg-white min-h-screen flex font-poppins flex-col items-center py-8 px-4">
@@ -142,11 +144,24 @@ const PrivacySettings = () => {
             Cancel Changes
           </button>
         </div>
+
+        {/* Added div with button inside */}
+        <div className="mt-6 w-full flex justify-center px-4">
+          <button
+            type="button"
+            onClick={() => navigate('/manage-account')}
+            className="px-6 py-2 bg-gray-300 text-xs text-gray-600 rounded hover:bg-gray-400"
+            style={{ marginRight: '600px' }}  // Moves the button 100 pixels to the right
+          >
+            Back
+          </button>
+        </div>
       </div>
     </div>
   );
 };
 
+// InputField component definition
 const InputField = ({ label, name, value, onChange, showToggle, onToggle }) => (
   <div className="relative">
     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-1">
